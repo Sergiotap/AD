@@ -1,3 +1,10 @@
+drop type tip_venta;
+drop type tip_lineas_venta;
+drop type tip_linea_venta;
+drop type tip_producto;
+drop type tip_cliente;
+drop type tip_direccion;
+drop type tip_telefonos;
 create type tip_telefonos is varray (3) of varchar(15);
 /
 create type tip_direccion as object(
