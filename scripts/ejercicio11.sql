@@ -45,16 +45,17 @@ create type tip_venta as object(
 );
 /
 create or replace type body tip_venta as
-MEMBER FUNCTION total_venta return number is
-total number:=0;
-linea tip_lineaventa;
-product tip_producto;
-begin
-    for i in 1..lineas.count loop
-	    linea:=lineas[i];
-	    select deref(linea.idproducto) into product from dual;
-	    total:=total +linea.cantidad*product.pvp;
-    end loop;
-    return total;
+	MEMBER FUNCTION total_venta return number is
+	total number:=0;
+	linea tip_linea_venta;
+	product tip_producto;
+	begin
+	    for i in 1..lineas.count loop
+		    linea:=lineas(i);
+		    select deref(linea.idproducto) into product from dual;
+		    total:=total +linea.cantidad*product.pvp;
+	    end loop;
+	    return total;
+    	end;
 end;
 /
